@@ -17,8 +17,8 @@ void Animation::Play(float& deltaTime)
   currentTime += deltaTime;
 
   sprite->setTextureRect(sf::IntRect(animationIndex * sprite->getTextureRect().width,
-   currentAnimation * sprite->getTextureRect().height, sprite->getTextureRect().width, 
-   sprite->getTextureRect().height));
+  currentAnimation * sprite->getTextureRect().height, sprite->getTextureRect().width, 
+  sprite->getTextureRect().height));
 
   if(currentTime >= animationDelay)
   {
