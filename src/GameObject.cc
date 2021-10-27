@@ -1,8 +1,10 @@
 #include "GameObject.hh"
 #include "Game.hh"
 
+class Game;
+
 GameObject::GameObject(std::string textureUrl, float scale, int width, int height, int column, int row, 
-float posX, float posY,b2BodyType bodyType,b2World*& world, sf::RenderWindow*& window)
+float posX, float posY, b2BodyType bodyType, b2World*& world, sf::RenderWindow*& window)
 {
   this->world = world;
   this->window = window;
@@ -24,14 +26,16 @@ float posX, float posY,b2BodyType bodyType,b2World*& world, sf::RenderWindow*& w
   rigidbody = new Rigidbody(world, bodyType,
   new b2Vec2(sprite->getPosition().x, sprite->getPosition().y),
   width * scale, height * scale, 1, 0, 0, new b2Vec2(sprite->getOrigin().x, sprite->getOrigin().y),
-  0.f);
+  0.f, (void*) this);
 
   sprite->setOrigin(width / 2, height / 2);
 
+  //Game::AddGameObject(this);
 }
 
 GameObject::~GameObject()
 {
+  delete rigidbody;
 }
 
 void GameObject::Start()
@@ -41,12 +45,12 @@ void GameObject::Start()
 
 void GameObject::Update(float& deltaTime)
 {
-    sprite->setPosition(rigidbody->GetPositionSFML());
+  sprite->setPosition(rigidbody->GetPositionSFML());
 }
 
 void GameObject::Draw()
 {
-    window->draw(*sprite);
+  window->draw(*sprite);
 }
 
 void GameObject::Input()
@@ -57,4 +61,14 @@ void GameObject::Input()
 sf::Sprite* GameObject::GetSprite() const
 {
   return sprite;
+}
+
+std::string GameObject::GetTagName() const
+{
+  return tagName;
+}
+
+void GameObject::SetTagName(std::string tagName)
+{
+  this->tagName = tagName;
 }

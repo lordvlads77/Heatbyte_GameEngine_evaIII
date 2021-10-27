@@ -1,14 +1,22 @@
 #pragma once
 
 #include<SFML/Graphics.hpp>
+//#include "CommonHeaders.hh"
 #include "GameObject.hh"
+#include "ConEventManager.hh"
+#include "DrawPhysics.hh"
+#include<box2d/box2d.h>
 
 class Game
 {
 private:
   sf::RenderWindow* window{};
   sf::Event* event{};
-
+  ContactEventManager* contactEventManager{};
+  b2Vec2* gravity{};
+  b2World* world{};
+  b2Draw* drawPhysics{};
+  std::vector<GameObject*>* gameObjects;
 
   void Update();
   void Render();
@@ -18,12 +26,11 @@ private:
   void MainLoop();
   void Destroy();
   void UpdatePhysics();
-public:
-  static std::vector<GameObject*>* gameObjects;
 
+public:
   Game();
   ~Game();
   void Initialize();
 
-  static void AddGameObject(GameObject* gameObject);
+  void AddGameObject(GameObject* gameObject);
 };
