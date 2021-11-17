@@ -9,7 +9,7 @@ int main(int argc, char** argv)
   switch (argc)
   {
   case 3:
-    if(action == "creategameobject")
+    if(action == "Create")
     {
       CreateGameObject(argv[2]);
       CreateGameObjectCC(argv[2]);
