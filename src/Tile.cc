@@ -18,8 +18,6 @@ float posX, float posY, sf::RenderWindow*& window)
   sprite->setPosition(posX, posY);
   sprite->setColor(sf::Color::White);
   sprite->setScale(scale, scale);
-
-  //sprite->setOrigin(width / 2, height / 2);
 }
 
 Tile::~Tile()

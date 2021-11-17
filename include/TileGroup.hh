@@ -14,7 +14,8 @@ private:
   float tileWidth{}, tileHeight{};
   const char* textureUrl{};
 public:
-  TileGroup(sf::RenderWindow*& window, int COLS, int ROWS, const char* filePath, float scale, float tileWidth, float tileHeight, const char* textureUrl);
+  TileGroup(sf::RenderWindow*& window, int COLS, int ROWS, const char* filePath, 
+  float scale, float tileWidth, float tileHeight, const char* textureUrl);
   ~TileGroup();
 
   void GenerateMap();
